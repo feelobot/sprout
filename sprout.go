@@ -31,11 +31,15 @@ func main() {
 	}
 	app.Commands = []cli.Command{
 		{
-			Name:      "add",
-			ShortName: "a",
-			Usage:     "add a task to the list",
+			Name:      "create",
+			ShortName: "c",
+			Usage:     "create a new application",
 			Action: func(c *cli.Context) {
-				println("added task: ", c.Args().First())
+				println("Creating application")
+				if len(c.Args()) > 0 {
+					application := c.Args()[0]
+					sh.Command("aws", "elasticbeanstalk", "create-application", "--application-name", application).Run()
+				}
 			},
 		},
 	}
