@@ -1,0 +1,8 @@
+machine:
+  environment:
+    SHORT_SHA: $(echo $CIRCLE_SHA1 | cut -b1-7)
+
+test:
+  override:
+    - go test
+

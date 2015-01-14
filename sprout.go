@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/codegangsta/cli"
 	"github.com/codeskyblue/go-sh"
+	"github.com/golang/glog"
 	"os"
 )
 
@@ -39,10 +40,10 @@ func main() {
 				if len(c.Args()) > 0 {
 					application := c.Args()[0]
 					sh.Command("aws", "elasticbeanstalk", "create-application", "--application-name", application).Run()
+					glog.Info("sh: aws elasticbeanstalk create-application --application-name", application)
 				}
 			},
 		},
 	}
 	app.Run(os.Args)
 }
-
